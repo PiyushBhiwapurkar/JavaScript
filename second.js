@@ -4087,9 +4087,8 @@ var pokemonName = {
 
 var i,j;
 var nameOfPokemon = prompt("Enter Pokemon Name");
+
 alert("Pokemon name you Entered is : " + nameOfPokemon);
-
-
 
 for( i=0 ; i<pokemonName.pokemon.length ; i++ )
 {
@@ -4097,11 +4096,33 @@ for( i=0 ; i<pokemonName.pokemon.length ; i++ )
 	{
 		for(pokemonDetails in pokemonName.pokemon[i])
 		{
-			document.write( pokemonDetails  + " : "  + pokemonName.pokemon[i][pokemonDetails] + " " + "<br />");
+			if( (pokemonDetails == 'next_evolution') || (pokemonDetails == 'prev_evolution') )
+			{
+				if(true == (pokemonName.pokemon[i].hasOwnProperty('prev_evolution')))
+				{
+					if(pokemonDetails == 'prev_evolution')
+					{
+						document.write( pokemonDetails  + " ID : "    + (pokemonName.pokemon[i].prev_evolution[0].num)  + " " + "<br />");
+						document.write( pokemonDetails  + " Name : "  + (pokemonName.pokemon[i].prev_evolution[0].name) + " " + "<br />");
+					}
+				} 
+				if(true == (pokemonName.pokemon[i].hasOwnProperty('next_evolution')))
+				{
+					if(pokemonDetails == 'next_evolution')
+					{
+						document.write( pokemonDetails  + " ID : "  + (pokemonName.pokemon[i].next_evolution[0].num)  + " " + "<br />");
+						document.write( pokemonDetails  + " Name : "  + (pokemonName.pokemon[i].next_evolution[0].name) + " " + "<br />");
+					}
+				} 
+			}
+			else
+			{
+				document.write( pokemonDetails  + " : "  + (pokemonName.pokemon[i][pokemonDetails]) + " " + "<br />");
+			}
 		}
 		
 		
-		document.write(JSON.stringify(pokemonName.pokemon[1]) + "<br /><br />");
+		/* document.write(JSON.stringify(pokemonName.pokemon[1]) + "<br /><br />");
 		document.write("id                    : " + pokemonName.pokemon[i].id                     + "<br />");
 		document.write("num                   : " + pokemonName.pokemon[i].num                    + "<br />");
 		document.write("name                  : " + pokemonName.pokemon[i].name                   + "<br />");
@@ -4115,9 +4136,9 @@ for( i=0 ; i<pokemonName.pokemon.length ; i++ )
 		document.write("avg_spawns            : " + pokemonName.pokemon[i].avg_spawns             + "<br />");
 		document.write("spawn_time            : " + pokemonName.pokemon[i].spawn_time             + "<br />");
 		document.write("multipliers           : " + pokemonName.pokemon[i].multipliers            + "<br />");
-		document.write("weaknesses            : " + pokemonName.pokemon[i].weaknesses             + "<br />");
+		document.write("weaknesses            : " + pokemonName.pokemon[i].weaknesses             + "<br />"); */
 		
-		if(Object.keys(pokemonName.pokemon[i].next_evolution[0].num) )
+		/* if(Object.keys(pokemonName.pokemon[i].next_evolution[0].num) )
 		document.write("next_evolution num    : " + pokemonName.pokemon[i].next_evolution[0].num  + "<br />");
 		document.write("next_evolution name   : " + pokemonName.pokemon[i].next_evolution[0].name + "<br />");
 		document.write("prev_evolution num    : " + pokemonName.pokemon[i].prev_evolution[0].num  + "<br />");
@@ -4127,7 +4148,7 @@ for( i=0 ; i<pokemonName.pokemon.length ; i++ )
 			document.write("Hey");
 			document.write("prev_evolution num    : " + pokemonName.pokemon[i].prev_evolution[j].num  + "<br />");
 			document.write("prev_evolution name   : " + pokemonName.pokemon[i].prev_evolution[j].name + "<br />");
-		}
+		} */
 				
 	}
 }
