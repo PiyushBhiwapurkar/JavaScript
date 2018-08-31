@@ -1,0 +1,538 @@
+/*Problem Statement : Imagine you are creating a JSON data store for a Ecommerce platform like flipkart.com or amazon.in. Create a JSON to show what fields you will choose and what type of data (string/object/array) would you want to store in those field.*/
+
+/*Created a User List JSON data containing AdminUser,RegularUser and GuestUser. JSON data is completely an Object with 3 Key-value Pairs. 
+1. AdminUser   : Consist of Admin details who will be given extra privileges and more control over other users.
+2. RegularUser : Consist of users who SignUp for creating an account and will have limited access according to their pincode available services and products.
+3. GuestUser   : GuestUser will be the one who will not Login and just needs to ahve a look at products, its availabilty and delivery service availability.
+	Every User is provided with 'UserID' which will be unique and in string format.
+*/
+
+{
+	"AdminUser":                                        //Access for Administrator with UserID,Password,Name,E-mail,Address,Mobile as Parameter.
+		{                                               //Admin users are seperated because they will have special privilage access over other users.
+			"UserID"    : "Admin",
+			"Password"  : "Admin",
+			"Name"      : "Administrator",
+			"Email"     : "admin@gmail.com",
+			"Address"   : {
+							"House_No"       : 100,
+							"Street_Address" : "First Road",
+							"LandMark"       : "Near Canara Bank",
+							"City"           : "Bhopal",
+							"State"          : "M.P",
+							"Pin"            : "654321"
+							},
+			"Mobile"    : 9876543210
+			
+		},
+    /*Access for multiple Users with different parameters for specific users who completes SIGNUP process with specific Unique ID. The Signed Up users will be stored as array of objects because after a certain duration the number of users will increase to much more extent.*/
+	"RegularUser": 
+		{
+
+			"UserID": "Shahrukh",
+			"Password": "Shahrukh",
+			"Name": "Shahrukh Khan",
+			"Email": "shahrukh@gmail.com",
+			"Address"   : {
+							"House_No"       : 222,
+							"Street_Address" : "Second Road",
+							"LandMark"       : "Near S.B.I. Bank",
+							"City"           : "Mumbai",
+							"State"          : "Maharastra",
+							"Pin"            : "123456"
+							},
+			"Mobile"    : 9876543211
+		},
+		{
+			"UserID": "Amitabh",
+			"Password": "Amitabh",
+			"Name": "Amitabh Bacchan",
+			"Email": "amitabh@gmail.com",
+			"Address"   : {
+							"House_No"       : 111,
+							"Street_Address" : "Third Road",
+							"LandMark"       : "Near Dominos Pizza",
+							"City"           : "Nagpur",
+							"State"          : "Maharastra",
+							"Pin"            : "440025"
+							},
+			"Mobile"    : 9876543212
+		},
+		{
+			"UserID": "Sunny",
+			"Password": "Sunny",
+			"Name": "Sunny Deol",
+			"Email": "sunny@gmail.com",
+			"Address"   : {
+							"House_No"       : 333,
+							"Street_Address" : "Fourth Road",
+							"LandMark"       : "Near Orange Park",
+							"City"           : "Aurangabad",
+							"State"          : "Maharastra",
+							"Pin"            : "420023"
+							},
+			"Mobile"    : 9876543213
+
+		},
+		{
+			"UserID": "Seller",
+			"Password": "Seller",
+			"Name": "Product Seller",
+			"Email": "sellingproducts@gmail.com",
+			"Address"   : {
+							"House_No"       : 444,
+							"Street_Address" : "Fifth Road",
+							"LandMark"       : "Near Blue Lake",
+							"City"           : "Hydrabad",
+							"State"          : "Telangana",
+							"Pin"            : "654565"
+							},
+			"Mobile"    : 9876543214
+		},
+    /*Access for guest User will be default if the user does not SignUp or SignIn and will lose many privilages over Admin and Regular Users.*/
+	"GuestUser": 
+		{
+			"UserID": "Guest",
+			"Password": "",
+			"Name": "Guest",
+			"Email": ""
+		}
+}
+/*End of creation of JSON data for Users.*/
+
+
+/*The Payment Object will ensure the mode of payment and the source of bank through which consumer would like to make an payment.
+Payment will be declared in a key-value pair of objects where inside an object an array of options for transactions will be available for respected payment mode.*/
+{
+	"payment" : {
+		"NetBanking"                : ["HDFC Bank","ICICI Bank"],
+		"PayOnDelivery"             : ["Cash on Delivery"],
+		"Credit/DebitCardPayment"   : ["HDFC BANK","DENA Bank","ICICI Bank"] ,
+		"Wallet"                    : ["PayTM","MobiKwik","FreeCharge","PhonePe"],
+		"Lazypay"                   : ["LazyPay"]
+	}
+};
+/*End for declaration of payment.*/
+
+
+
+/*Declaring a JSON of categories with multiple options.*/
+{
+	"categories" :                         //Categories will have multiple objects with key and array of items present in it.
+                                        	/*An Object in form of key-value pair will be declared with key as parameter will be declared and a bunch options with multiple products will be available.*/
+	{
+		"Echo & Alexa":                    //For specific products having multiple options an array will store the product data and information.
+		{
+			"Echo Dot" : 
+				{
+					"Size"                    : "83.5 x 83.5 x 32 mm",
+					"Weight"                  : "163 g Actual size and weight may vary by configuration and manufacturing process",
+					"Wi-Fi_Connectivity"      : "Dual-band Wi-Fi supports 802.11 a/b/g/n (2.4 and 5 GHz) networks. Does not support connection to ad-hoc (or peer-to-peer) Wi-Fi networks.",
+					"Bluetooth_Connectivity"  : "Advanced Audio Distribution Profile (A2DP) support for audio streaming from your mobile device to Echo Dot or from Echo Dot to your Bluetooth speaker. Audio/Video Remote Control Profile (AVRCP) for voice control of connected mobile devices. Hands-free voice control is not supported for Mac OS X devices. Bluetooth speakers requiring PIN codes are not supported.",
+					"Audio"                   : "Built-in speaker for voice feedback when not connected to external speakers. 3.5 mm stereo audio output for use with external speakers (audio cable not included)",
+					"System_Requirements"     : "The Alexa App is compatible with Android and iOS devices and also accessible via your desktop browser. Certain skills and services are subject to change, may not be available in all areas and may require separate subscriptions or other fees.",
+					"Warranty_and_Service"    : "Echo Dot is sold with a limited warranty of one year. Use of Echo Dot is subject to the terms found here.",
+					"Included_in_the_box"     : "Echo Dot, power adaptor, USB charging cable and Quick Start Guide."
+				},
+			"Amazon Echo" : 
+				{
+					"Size"                    : "148.5 x 88 x 88 mm",
+					"Weight"                  : "821 g Actual size and weight may vary by configuration and manufacturing process",
+					"Wi-Fi_Connectivity"      : "Supports 802.11 a/b/g/n. Does not support connecting to ad-hoc (or peer-to-peer) Wi-Fi networks.",
+					"Bluetooth_Connectivity"  : "Advanced Audio Distribution Profile (A2DP) support for audio streaming from your mobile device to Echo or from Echo to your Bluetooth speaker. Audio/Video Remote Control Profile (AVRCP) for voice control of connected mobile devices. Hands-free voice control is not supported for Mac OS X devices. Bluetooth speakers requiring PIN codes are not supported",
+					"Audio"                   : "2.5” woofer and 0.6” tweeter",
+					"System_Requirements"     : "The Alexa App is compatible with Android and iOS devices and also accessible via your desktop browser. Certain skills and services are subject to change, may not be available in all areas and may require separate subscriptions or other fees.",
+					"Warranty_and_Service"    : "Amazon Echo is sold with a limited warranty of one year. Use of Amazon Echo is subject to the terms found here.",
+					"Included_in_the_box"     : "Amazon Echo, Echo Shell, power adaptor/cable (1.8 m), Things to Try card and Quick Start Guide."
+				},
+			"Introducing: Echo Spot" : 
+				{
+					"Size"                    : "104 x 96 x 91 mm",
+					"Weight"                  : "419 g Actual size and weight may vary by configuration and manufacturing process",
+					"Wi-Fi_Connectivity"      : "Dual-band Wi-Fi supports 802.11 a/b/g/n (2.4 and 5 GHz) networks. Does not support connecting to ad-hoc (or peer-to-peer) Wi-Fi networks.",
+					"Bluetooth_Connectivity"  : "Advanced Audio Distribution Profile (A2DP) support for audio streaming from your mobile device to Echo Spot or from Echo Spot to your Bluetooth speaker. Audio/Video Remote Control Profile (AVRCP) for voice control of connected mobile devices. Hands-free voice control is not supported for Mac OS X devices. Bluetooth speakers requiring PIN codes are not supported",
+					"System_Requirements"     : "The Alexa App is compatible with Android and iOS devices and also accessible via your desktop browser. Certain skills and services are subject to change, may not be available in all areas and may require separate subscriptions or other fees.",
+					"Warranty_and_Service"    : "Amazon Echo Spot is sold with a limited warranty of one year. Use of Amazon Echo Spot is subject to the terms found here.",
+					"Included_in_the_box"     : "Echo Spot, power adaptor/cable (1.8 m),Things to Try card and Quick Start Guide."
+				},
+			"Echo Plus"                       : {},
+			"See all devices with Alexa"      : {} ,
+			"Meet Alexa"                      : {},
+			"Alexa Skills"                    : {},
+			"Alexa App"                       : {},
+			"Alexa Smart Home"                : {}, 
+			"Amazon Prime Music"              : {}
+		},
+	
+
+		"Amazon Fire TV Stick": 
+		{
+			"Amazon Fire TV Stick" : 
+				{
+					"Size"                    : "3.4 x 1.2 x 0.5 (85.9 mm x 30.0 mm x 12.6 mm)",
+					"Weight"                  : "32g",
+					"Processor"               : "MediaTek Quad-Core ARM 1.3 GHz",
+					"GPU"                     : "Mali450 MP4",
+					"Storage"                 : "8 GB internal (actual formatted capacity will be less) available for apps and games",
+					"Memory"                  : "1 GB",
+					"Wi-Fi Connectivity"      : "Dual-band, dual-antenna Wi-Fi supports 2x2 MIMO 802.11a/b/g/n/ac",
+					"Bluetooth"               : "Bluetooth 4.1",
+					"Voice Support"           : "Yes, with Voice Remote (included) or free Fire TV Remote App (available for download on Fire, Android, and iOS)",
+					"Cloud Storage"           : "Free cloud storage for all Amazon content",
+					"Ports"                   : "HDMI output, Micro-USB for power only",
+					"Audio Support"           : "Dolby Audio, 5.1 surround sound, 2ch stereo, and HDMI audio pass-through up to 7.1",
+					"Content Format Supported": "Video: H.264 1080p30H.265 1080p30, Audio: AAC-LC, HE-AACv1 (AAC+), HE-AACv2 (eAAC+), AC3 (Dolby Digital), eAC3 (Dolby Digital Plus), FLAC, MIDI, MP3, PCM/Wave, Vorbis, AMR-NB, AMR-WBPhoto: JPEG, PNG, GIF, BMP",
+					"Output Resolution Supported" : "720p and 1080p up to 60fps",
+					"System Requirments"      : "High-definition television with available HDMI input, Internet connection via Wi-Fi, a power outlet.",
+					"TV Compatibility"        : "Compatible with high-definition TVs with HDMI capable of 1080p or 720p at 60/50Hz, including popular HDCP-compatible models from: Samsung, LG, Sony, Panasonic,Videocon, Onida, Micromax, Vu, BPL, and others.",
+					"Regional Support"        : "Certain services may not be available outside India",
+					"Subtitles"               : "Watch videos and TV shows with subtitles displayed. Subtitles are not available for all content.",
+					"Included in the Box"     : "Fire TV Stick,Voice Remote,USB cable and power adapter,HDMI extender 2 x AAA batteries,Quick Start Guide",
+					"Warranty and Service"    : "Fire TV Stick is sold with a limited warranty of one year provided by the manufacturer."
+				},
+			"Amazon Prime Video"              : {},
+			"Fire TV Apps & Games"            : {}
+		},
+		
+		"Kindle E-Readers & eBooks": 
+			{
+				"Kindle"                        : {},
+				"Kindle Paperwhite"             : {},
+				"Kindle Paperwhite Starter Pack": {},
+				"Kindle Voyage"                 : {},
+				"Kindle Oasis"                  : {},
+				"Certified Refurbished Kindle"  : {},
+				"Kindle E-Reader Accessories"   : {},
+				"See all Kindle E-readers"      : {},
+				"Free Kindle Reading Apps"      : {},
+				"Kindle Cloud Reader"           : {},
+				"Manage Your Content and Devices": {},
+				"All Kindle eBooks"             : {},
+				"Kindle Unlimited"              : {},
+				"Kindle Exam Central"           : {},
+				"Kindle eTextbooks"             : {},
+				"Kindle Monthly Deals"          : {},
+				"eBook Bestsellers"             : {},
+				"eBooks in Indian Languages"    : {},
+				"Hindi"                         : {},
+				"Tamil"                         : {}
+			},
+		
+		"Amazon Prime Video": 
+			[
+				"All Videos",
+				"Movies",
+				"TV Shows",
+				"Kids Shows"
+			]
+		,
+		
+		"Amazon Prime Music": 
+			[
+				"Amazon Prime Music",
+				"Open web player",
+				"Voice controlled with Alexa",
+				"Amazon Prime Music Apps",
+				"CDs and Vinyls"
+			], 
+		
+		"Mobiles, Computers": 
+			{
+				"All Mobile Phones" : {
+					"BrandName" : {
+						"MI" : [
+							{
+								"ProductName"          : "A2",
+								"ProductID"            : "MOB01",
+								"ProductDescription"   : {
+									"OS"                  : "Android",
+									"RAM"                 : "4 GB",
+									"Item Weight"         : "168 gm",
+									"Product Dimension"   : "15.9 x 0.7 x 7.5 cm",
+									"Batteries"           : "15.9 x 0.7 x 7.5 cm",
+									"Item Model Number"   : "Mi A2",
+									"Wireless Communicating Technologies" : "Bluetooth, WiFi Hotspot",
+									"Connectivity Technologies" : "Bluetooth v5.0 wireless technology, 802.11 a/b/g/n/ac wifi, GPS/AGPS, GLONASS, BeiDou, Type C USB 2.0 OTG, IR blaster",
+									"Special Features"    : "Dual SIM, GPS, Music Player, Video Player, FM Radio, Gyroscope, Infrared sensor, Proximity sensor, Accelerometer, Ambient light sensor, eCompass, E-mail",
+									"Other Camera Features": "20 MP",
+									"Form Factor"         : "Touchscreen Phone",
+									"Weight"              : "168 Grams",
+									"Color"               : "Gold",
+									"Battery power "      : 3010,
+									"What in the Box"     : "Mi A2, Power adapter, USB cable, SIM eject tool, Type-C to Audio adapter, Warranty card, User guide, Clear soft case"
+								}
+								
+							}
+						]
+					}
+				},
+				"All Mobile Accessories"       : {},
+				"Cases & Covers"               : {},
+				"Screen Protectors"            : {},
+				"Power Banks"                  : {},
+				"All Certified Refurbished"    : {},
+				"Tablets"                      : {},
+				"Wearable Devices"             : {},
+				"Smart Home"                   : {},
+				"Office Supplies & Stationery" : {},
+				"Software"                     : {},
+				"All Computers & Accessories"  : {},
+				"Laptops"                      : {},
+				"Drives & Storage"             : {},
+				"Printers & Ink"               : {},
+				"Networking Devices"           : {},
+				"Computer Accessories"         : {},
+				"Game Zone"                    : {}, 
+				"Desktops & Monitors"          : {},
+				"Electronics Only on Amazon"   : {},
+				"All Electronics"              : {}
+			},
+		"TV, Appliances, Electronics": 
+			[
+				"Televisions",
+				"Home Entertainment Systems",
+				"Headphones",
+				"Speakers",
+				"MP3, Media Players & Accessories",
+				"Audio & Video Accessories",
+				"Cameras",
+				"DSLR Cameras",
+				"Camera Accessories",
+				"Musical Instruments & Professional Audio",
+				"Gaming Consoles",
+				"All Electronics",
+				"Air Conditioners",
+				"Refrigerators",
+				"Washing Machines",
+				"Kitchen & Home Appliances",
+				"Heating & Cooling Appliances",
+				"All Appliances"
+			],
+
+		"Men's Fashion": 
+			[
+				"Clothing",
+				"T-shirts & Polos",
+				"Shirts",
+				"Jeans",
+				"Innerwear",
+				"Watches",
+				"Bags & Luggage",
+				"Sunglasses",
+				"Jewellery",
+				"Wallets",
+				"Shoes",
+				"Sports Shoes",
+				"Formal Shoes",
+				"Casual Shoes",
+				"Sportswear",
+				"The Designer Boutique",
+				"Men's Fashion",
+				"Amazon Fashion",
+				"Fashion Sales & Deals"
+			],
+		"Women's Fashion": 
+			[
+				"Clothing",
+				"Western Wear",
+				"Ethnic Wear",
+				"Lingerie & Nightwear",
+				"Top Brands",
+				"Watches",
+				"Handbags & Clutches",
+				"Gold & Diamond Jewellery",
+				"Fashion Jewellery",
+				"Sunglasses",
+				"Shoes",
+				"Fashion Sandals",
+				"Ballerinas",
+				"The Designer Boutique",
+				"Handloom & Handicraft Store",
+				"Sportswear",
+				"Women's Fashion",
+				"Amazon Fashion",
+				"Fashion Sales & Deals"
+			],
+		
+		"Home, Kitchen, Pets": 
+			[
+				"Kitchen & Dining",
+				"Kitchen Storage & Containers",
+				"Furniture",
+				"Fine Art",
+				"Home Furnishing",
+				"Bedroom Linen",
+				"Home Décor",
+				"Garden & Outdoors",
+				"Home Storage",
+				"Indoor Lighting",
+				"Home Improvement",
+				"Sewing & Craft Supplies",
+				"All Home & Kitchen",
+				"Shop by Room",
+				"Home & Kitchen Deals",
+				"All Certified Refurbished",
+				"All Pet Supplies",
+				"Dog supplies"
+
+			],
+		
+		"Beauty, Health, Grocery": 
+			[
+				"Beauty & Grooming",
+				"Luxury Beauty",
+				"Make-up",
+				"Health & Personal Care",
+				"Household Supplies",
+				"Personal Care Appliances",
+				"Diet & Nutrition",
+				"Subscribe & Save",
+				"Amazon Pantry",
+				"Value Bazaar",
+				"All Grocery & Gourmet Foods",
+				"Coffee, Tea & Beverages",
+				"Snack Foods"
+
+			],
+		
+		"Sports, Fitness, Bags, Luggage": 
+			[
+				"Badminton ",
+				"Badminton",
+				"Cycling",
+				"Football",
+				"Running",
+				"Camping & Hiking",
+				"Fitness Accessories",
+				"Yoga",
+				"Strength Training",
+				"Cardio Equipment",
+				"Certified Refurbished",
+				"All Exercise & Fitness",
+				"All Sports, Fitness & Outdoors",
+				"Backpacks",
+				"Rucksacks",
+				"Suitcases & Trolley Bags",
+				"Travel Duffles",
+				"Travel Accessories",
+				"Wallets"
+
+			],
+		
+		"Toys, Baby Products, Kids' Fashion": 
+			[
+				"Toys & Games",
+				"Baby Products",
+				"Diapers",
+				"Baby Wish List",
+				"Toys Gifting Store",
+				"STEM Toys Store",
+				"International Toy Store",
+				"Baby Bath, Skin & Grooming",
+				"Strollers & Prams",
+				"Nursing & Feeding",
+				"Subscribe & Save",
+				"Amazon Pantry",
+				"Amazon Family",
+				"Kids' Clothing",
+				"Kids' Shoes",
+				"School Bags",
+				"Kids' Watches",
+				"Kids' Fashion",
+				"Baby Fashion"
+
+			],
+		
+		"Car, Motorbike, Industrial": 
+			[
+				"Motorbike Accessories & Parts",
+				"Car Accessories",
+				"Car Electronics",
+				"Car Parts",
+				"Car & Bike Care",
+				"All Car & Motorbike Products",
+				"Industrial & Scientific Supplies",
+				"Test, Measure & Inspect",
+				"Lab & Scientific",
+				"Janitorial & Sanitation Supplies"
+
+			],
+		
+		"Books": 
+			[
+				"All Books",
+				"Fiction Books",
+				"Editor's Corner",
+				"School Textbooks",
+				"Children's Books",
+				"Exam Central",
+				"Textbooks",
+				"Indian Language Books",
+				"Used Books",
+				"Kindle eBooks"
+
+			],
+		
+		"Movies, Music & Video Games": 
+			[
+				"All Movies & TV Shows",
+				"Blu-ray",
+				"All English",
+				"All Hindi",
+				"Gaming Consoles",
+				"Latest Video Games",
+				"Gaming Accessories",
+				"PC Games",
+				"Video Games Deals",
+				"All Video Games",
+				"All Music",
+				"International Music",
+				"Film Songs",
+				"Indian Classical",
+				"Musical Instruments & Professional Audio",
+				"Open web player",
+				"Amazon Prime Music"
+
+
+			],
+		
+		"Gift Cards & Mobile Recharges": 
+			[
+				"All Gift Cards",
+				"Popular Gift Cards",
+				"Gift Boxes, Gift Tags, Greeting Cards",
+				"Popular Brand Gift Vouchers",
+				"Birthday Gift Cards",
+				"Wedding & Anniversary",
+				"Best Wishes & Thank You",
+				"Corporate Gift Cards",
+				"Add a gift card",
+				"Mobile Recharges"
+
+			],
+		
+		"Global Store": 
+			[
+				"Clothing & Accessories",
+				"Watches",
+				"Home & Kitchen",
+				"Shoes",
+				"PC & Electronics",
+				"Office Supplies",
+				"Toys & Games",
+				"Pet Supplies",
+				"Luggage",
+				"Musical Instruments",
+				"Sports & Fitness",
+				"Music",
+				"Video Games",
+				"Books",
+				"Global Store",
+				"Bestsellers",
+				"Women's Fashion",
+				"Men's Fashion",
+				"Shop by Room"
+
+			]
+	}
+}
