@@ -4085,70 +4085,125 @@ var pokemonName = {
 	}]
 };
 
+/*To run the 2 loops we need to declare 2 variables.*/
 var i,j;
+
+/*Declaring variable to print check if the pokemon is found or not.*/
+var pokemonFound = false;
+
+/*Coolecting Pokemon name in a javascript Variable 'nameOfPokemon'*/
 var nameOfPokemon = prompt("Enter Pokemon Name");
 
 alert("Pokemon name you Entered is : " + nameOfPokemon);
 
-for( i=0 ; i<pokemonName.pokemon.length ; i++ )
-{
-	if( pokemonName.pokemon[i].name == nameOfPokemon)
+/*Declaring function to check the availability of pokemon in database(JSON)*/
+var pokemonSearch = function(nameOfPokemon){
+	for( i=0 ; i<pokemonName.pokemon.length ; i++ )
+	{
+		if( pokemonName.pokemon[i].name == nameOfPokemon)
+		{
+			document.write("<b>Pokemon's Details are :</b> <br /><br />");
+			pokemonFound = true;
+			
+			for(pokemonDetails in pokemonName.pokemon[i])
+			{
+				if( (pokemonDetails == 'next_evolution') || (pokemonDetails == 'prev_evolution') )
+				{
+					if(true == (pokemonName.pokemon[i].hasOwnProperty('prev_evolution')))
+					{
+						if(pokemonDetails == 'prev_evolution')
+						{
+							document.write( pokemonDetails  + " ID : "    + (pokemonName.pokemon[i].prev_evolution[0].num)  + " " + "<br />");
+							document.write( pokemonDetails  + " Name : "  + (pokemonName.pokemon[i].prev_evolution[0].name) + " " + "<br />");
+						}
+					} 
+					if(true == (pokemonName.pokemon[i].hasOwnProperty('next_evolution')))
+					{
+						if(pokemonDetails == 'next_evolution')
+						{
+							document.write( pokemonDetails  + " ID : "  + (pokemonName.pokemon[i].next_evolution[0].num)  + " " + "<br />");
+							document.write( pokemonDetails  + " Name : "  + (pokemonName.pokemon[i].next_evolution[0].name) + " " + "<br />");
+						}
+					} 
+				}
+				else                                     
+				{
+					document.write( pokemonDetails  + " : "  + (pokemonName.pokemon[i][pokemonDetails]) + " " + "<br />");
+				}
+			}
+			break;                                            //After getting all the data for resp Pokemon the for loop will be breaked.
+		}
+	}
+
+	if(pokemonFound == false)                                 //If Pokemon not found then this message will be displayed.
+	{
+		alert("No Pokemon with such name exist in our Database");
+	}
+};
+/*Completed declaring of functions*/
+
+
+/*Calling pokemon and passing it as an argument to search it on JSON database and printing all its details*/
+pokemonSearch(nameOfPokemon);
+/*Completed calling first Function*/
+
+/*Function to check the name of Pokemon weather its present in their next_evolution */
+var pokemon_next_evolution_name = function(nameOfPokemon){
+	for( i=0 ; i<pokemonName.pokemon.length ; i++ )
 	{
 		for(pokemonDetails in pokemonName.pokemon[i])
 		{
-			if( (pokemonDetails == 'next_evolution') || (pokemonDetails == 'prev_evolution') )
+			if( pokemonDetails == 'next_evolution' )
 			{
-				if(true == (pokemonName.pokemon[i].hasOwnProperty('prev_evolution')))
+				if(true == pokemonName.pokemon[i].hasOwnProperty('next_evolution') )
 				{
-					if(pokemonDetails == 'prev_evolution')
+					if( (pokemonDetails == 'next_evolution') && (pokemonName.pokemon[i].next_evolution[0].name  == nameOfPokemon) )
 					{
-						document.write( pokemonDetails  + " ID : "    + (pokemonName.pokemon[i].prev_evolution[0].num)  + " " + "<br />");
-						document.write( pokemonDetails  + " Name : "  + (pokemonName.pokemon[i].prev_evolution[0].name) + " " + "<br />");
+						document.write("<br /><b>Name of Pokemon whose name is peresent in Net Evolution Field</b><br />");
+						document.write( pokemonDetails  + "ID   : "  + (pokemonName.pokemon[i].next_evolution[0].num)  + " " + "<br />");
+						document.write( pokemonDetails  + "Name : "  + (pokemonName.pokemon[i].next_evolution[0].name) + " " + "<br />");
 					}
 				} 
-				if(true == (pokemonName.pokemon[i].hasOwnProperty('next_evolution')))
-				{
-					if(pokemonDetails == 'next_evolution')
-					{
-						document.write( pokemonDetails  + " ID : "  + (pokemonName.pokemon[i].next_evolution[0].num)  + " " + "<br />");
-						document.write( pokemonDetails  + " Name : "  + (pokemonName.pokemon[i].next_evolution[0].name) + " " + "<br />");
-					}
-				} 
-			}
-			else
-			{
-				document.write( pokemonDetails  + " : "  + (pokemonName.pokemon[i][pokemonDetails]) + " " + "<br />");
 			}
 		}
-		
-		
-		/* document.write(JSON.stringify(pokemonName.pokemon[1]) + "<br /><br />");
-		document.write("id                    : " + pokemonName.pokemon[i].id                     + "<br />");
-		document.write("num                   : " + pokemonName.pokemon[i].num                    + "<br />");
-		document.write("name                  : " + pokemonName.pokemon[i].name                   + "<br />");
-		document.write("img                   : " + pokemonName.pokemon[i].img                    + "<br />");
-		document.write("type                  : " + pokemonName.pokemon[i].type                   + "<br />");
-		document.write("height                : " + pokemonName.pokemon[i].height                 + "<br />");
-		document.write("weight                : " + pokemonName.pokemon[i].weight                 + "<br />");
-		document.write("candy                 : " + pokemonName.pokemon[i].candy                  + "<br />");
-		document.write("egg                   : " + pokemonName.pokemon[i].egg                    + "<br />");
-		document.write("spawn_chance          : " + pokemonName.pokemon[i].spawn_chance           + "<br />");
-		document.write("avg_spawns            : " + pokemonName.pokemon[i].avg_spawns             + "<br />");
-		document.write("spawn_time            : " + pokemonName.pokemon[i].spawn_time             + "<br />");
-		document.write("multipliers           : " + pokemonName.pokemon[i].multipliers            + "<br />");
-		document.write("weaknesses            : " + pokemonName.pokemon[i].weaknesses             + "<br />"); */
-		
-		/* if(Object.keys(pokemonName.pokemon[i].next_evolution[0].num) )
-		document.write("next_evolution num    : " + pokemonName.pokemon[i].next_evolution[0].num  + "<br />");
-		document.write("next_evolution name   : " + pokemonName.pokemon[i].next_evolution[0].name + "<br />");
-		document.write("prev_evolution num    : " + pokemonName.pokemon[i].prev_evolution[0].num  + "<br />");
-		document.write("prev_evolution name   : " + pokemonName.pokemon[i].prev_evolution[0].name + "<br />");
-		for( j=0 ; j<pokemonName.pokemon[i].prev_evolution[0].length ; j++)
+	}
+};
+/*End of Function pokemon_next_evolution_name*/
+
+/*Taking name of Pokemon from user to check the availability in database.*/
+nameOfPokemon = prompt("Enter the name of Pokemon whose next evolution you would like to see matching in our database.");
+
+/*calling the function pokemon_next_evolution_name()*/
+pokemon_next_evolution_name(nameOfPokemon);
+
+
+
+/*Function for checking all the pokemons with same weaknesses*/
+var pokemonWeakness = function(pokemonWeakness){
+	document.write("<br /> <b>Name of Pokemon with weakness as : </b> " + pokemonWeakness + "<br /><br />");
+	for( i=0 ; i<pokemonName.pokemon.length ; i++ )
+	{
+		for(pokemonDetails in pokemonName.pokemon[i])
 		{
-			document.write("Hey");
-			document.write("prev_evolution num    : " + pokemonName.pokemon[i].prev_evolution[j].num  + "<br />");
-			document.write("prev_evolution name   : " + pokemonName.pokemon[i].prev_evolution[j].name + "<br />");
-		} */
-				
+			if( pokemonDetails == 'weaknesses' )
+			{
+				for(j in pokemonDetails)
+				{
+					if(pokemonName.pokemon[i].weaknesses[j] == pokemonWeakness)
+					{
+						document.write("<br /> Pokemon Name : " + pokemonName.pokemon[i].name);
+					}
+				}
+			}	
+		}
 	}
 }
+/*End of Function for checking weakness*/
+
+/*Catching weakness of Pokemon from User*/
+var pokemonWeaknessName = prompt("Enter the name of Weakness.");
+
+/*Calling the Pokemon Weakness Function.*/
+pokemonWeakness(pokemonWeaknessName);
+
+/*End of JavaScript Code*/
