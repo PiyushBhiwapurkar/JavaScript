@@ -27,7 +27,7 @@
 		},
     /*Access for multiple Users with different parameters for specific users who completes SIGNUP process with specific Unique ID. The Signed Up users will be stored as array of objects because after a certain duration the number of users will increase to much more extent.*/
 	"RegularUser": 
-		{
+		[{
 
 			"UserID": "Shahrukh",
 			"Password": "Shahrukh",
@@ -73,8 +73,10 @@
 							},
 			"Mobile"    : 9876543213
 
-		},
-		{
+		}],
+	
+	/*Access to sellerUser will help the system to provide details where their products can be delivered and at what duration.*/
+	"SellerUser" : {
 			"UserID": "Seller",
 			"Password": "Seller",
 			"Name": "Product Seller",
