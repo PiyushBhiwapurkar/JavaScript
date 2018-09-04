@@ -1,0 +1,52 @@
+Problem Logics for Assignment 02:
+
+************************************************PROBLEM STATEMENT 01 STARTS**************************************************************
+Problem Statement 01 : Convert the following two functions written in simple Javascript to ES6. Try and use as many features of ES6 as you can.
+
+Solution : FileName => Assignment02Task01.js , Assignment02Task01-BubbleSort.js
+
+	Part 01 => Assignment02Task01.js
+	=========> 1. First feature is instead of declaring "var" we should prefer "let".
+               2. Rather than not declaring currentUser where JavaScript will assume it as "var", I have re-defined it to "const".
+			   3. For testing a dummy userData of Users should be present to verify the basic data.
+			   
+	Part 02 => Assignment02Task01-BubbleSort.js
+	=========> 1. Declaring the function Bubble Sort as an arrow function and declaring it as "let".
+	           2. All the "var" should be replaced with "let".
+			   3. Assume some dummy data and send data using REST parameters in form of an array.
+
+************************************************END OF PROBLEM STATEMENT 1************************************************************
+
+
+************************************************PROBLEM STATEMENT 02 STARTS**************************************************************
+
+PROBLEM STATEMENT 02 :  Consider the following JSON dataset - https://s3-ap-southeast-1.amazonaws.com/edwisor-india-bucket/assignments/we
+b03/JSS1l2/bigbangtheory.json This dataset contains information about a popular TV show in america called Big Bang Theory. Include this dataset in a JS file as a variable and then write the following functions (using ES6 features as much as possible) -
+● Write a function that takes Season number and episode number as input and gives all the information about that particular episode as output.
+● Write a function that can take any number of episode ids as input and returns all the information about those episodes.
+● Write a function to search episode by its name.
+
+Solution : FileName => Assignment02Task02.js , Assignment02Task02.html
+	1. Declaring complete JSON file into "DataSet" variable using REST paramaeter "let".
+	2. Then, converting JSON data into String.
+	3. And then converting the string into an Object which will be stored in ObjectSet.
+
+	Part 01 => Write a function that takes Season number and episode number as input and gives all the information about that particular episode as output.
+	=========> 	1. First accepting inputs from user the "Season Number" and "Episode Number".
+				2. Declaring an arrow function which accepts the "Season Number" and "Episode Number" as input and comparing it with the ObjectDataset Object, wheather the data passed is present or not.
+				3. If the data is present then the Object will be thrown to console and all its details can be viewed in console.
+				4. The Complete infornmation will be copied as the complete object is copied to console. But, if no data is found then a message in console will be given.
+				
+	Part 02 => Write a function that can take any number of episode ids as input and returns all the information about those episodes.
+	=========> 1. Initially, we need to accept the array of episode number, which needs to be searched onto the JSON database.
+	           2. Declare an arrow function which accepts the "array" i.e. in form of REST parameters, to process the operation.
+			   3. The function will loop through the array first, get the first indexed data and search it over complete JSON database, if found will print in console or search it till the end.
+			   4. The loop will be carried out till all the array id no. are not searched.
+			   5. Exceptions are not handeled, as if the data is not found it will just not print the respected data else will gono searching.
+			   
+	Part 03 => Write a function to search episode by its name.
+	=========> 1. First, we need to take Episode's name as input from user.
+	           2. As soon as accept the input from user or hardcode it , then we need to declare the function carring loop through out the object and comparing the Episode's name with name on the ObjectDataset.
+			   3. If found console will be printed as Available and complete Object data will be printed else not Available.
+ 
+************************************************END OF PROBLEM STATEMENT 2************************************************************
